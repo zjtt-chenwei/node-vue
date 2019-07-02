@@ -1,0 +1,211 @@
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>vue自定义过滤器</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            
+        </div>
+        <br>
+        <div id="faCounter">  
+          <counter></counter> 
+        </div>
+    </body>
+<script type="text/javascript">
+  Vue.filter("sum", function(value) {   //全局方法 Vue.filter() 注册一个自定义过滤器,必须放在Vue实例化前面
+    console.log(typeof value);  
+    return Number(value) + 1 ;
+  });
+ 
+  Vue.filter('cal', function (value, begin, xing) {   //全局方法 Vue.filter() 注册一个自定义过滤器,必须放在Vue实例化前面
+      return Number(value) + begin + xing;
+  });
+
+  Vue.component("counter",{
+    data:function () { 
+      return {count:0} 
+    },
+    //template 是模板的意思，在 html 里面是一个可以同时控制多个子元素的父元素。在这里定义了组件的内容
+  	template:'<button v-on:click="count++">点击计算点击次数：{{count}}次</button>'
+
+  })
+
+
+var app = new Vue({
+  el: '#app',
+  data() {
+    return {
+      message: 1
+    }
+  },
+  template:`<div>
+              <p>{{message | sum}}</p>
+              <p>{{message | cal(1, 1)}}</p>
+              <p>{{message | sum | cal(1, 1) }}</p> 
+              <p>{{message | sum}}</p>
+              <input type="number" v-model="message" />
+            </div>`,
+  filters: {
+    sum2: function(value) {
+      return value * 10;
+    }
+  }
+})
+new Vue({
+	el:"#faCounter"
+})
+</script>
+</html>
+ -->
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div class="img-warpper">
+        <img class="lazyload" data-original="https://media3.giphy.com/media/k5GuJn7VslbpGQqHUB/200w.webp">
+        </div>
+        <div class="img-warpper">
+        <img class="lazyload" data-original="https://media1.giphy.com/media/2A7yoKf2B87kotTApZ/200w.webp">
+        </div>
+        <div class="img-warpper">
+        <img class="lazyload" data-original="https://media2.giphy.com/media/3h1rwFW1PpLxD9xLUR/200w.webp">
+        </div>
+        <div class="img-warpper">
+        <img class="lazyload" data-original="https://media0.giphy.com/media/igHgY3xzYxmRcxwZBs/200w.webp">
+        </div>
+        <div class="img-warpper">
+        <img class="lazyload" data-original="https://media0.giphy.com/media/69v5dFsLtzdpaFZz2N/200w.webp">
+        </div>
+
+    </body>
+    <script></script>
+</html> -->
+<!-- <html>
+<head>
+    <meta charset="UTF-8">
+    <title>vue自定义过滤器</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <blog-post title="My journey with Vue"></blog-post>
+        <blog-post
+        v-for="post in posts"
+        v-bind:key="post.id"
+        v-bind:title="post.title"
+        ></blog-post>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.component("blog-post  ",{  //全局定义,必须放在Vue实例化前面
+        props: ['title'],
+        template: '<h3>{{ title }}</h3>'
+    })
+
+
+new Vue({
+    el: '#app',
+    data() {
+        return {
+            posts:[
+                { id: 1, title: 'My journey with Vue' },
+                { id: 2, title: 'Blogging with Vue' },
+                { id: 3, title: 'Why Vue is so fun' }
+            ]
+        }
+    },
+})
+
+</script>
+</html> 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+/* let和const与var */
+{  
+  var a = [];
+  for (let i = 0; i < 10; i++) {
+    a[i] = function () {
+      console.log(i);
+    };
+  }
+  a[9](); // 10
+
+  let b = [];
+  for (let i = 0; i < 10; i++) {
+    b[i] = function () {
+      console.log(i);
+    };
+  }
+  b[9](); // 9
+}
+
+/* 解构赋值 */
+{ 
+  let [foo, [[bar], baz]] = [1, [[2], 3]]; //foo=1 bar=2 baz=3
+  let [head, ...tail] = [1, 2, 3, 4]; // head=1 tail=[2, 3, 4]
+  let [ , , third] = ["foo", "bar", "baz"]; // third="baz"
+  let [a, b, d] = [1, [2, 3], 4]; // a=1 b=[2,3] d=4
+  console.log(a, b, d); 
+  
+  let z= [1, undefined, 3].map((z = 'yes') => z)
+  console.log(z)
+  let x
+  ({x: y} = {x: 1}); // 成功 圆括号是必须的，否则会报错。因为解析器会将起首的大括号，理解成一个代码块，而不是赋值语句。
+  console.log(x);//第一个bar是模式,真正被赋值的是baz
+}
+/* 字符串的扩展 */
+{
+  let a = 'first' 
+  let b = `foo${a}bar`
+  console.log(b); //foofirstbar
+  //新方法：includes(), startsWith(), endsWith()； repeat()重复；padStart()，padEnd()补全
+
+}
+/* 数值扩展 */
+{
+  // 新方法：Number.isFinite()  Number.isNaN()  只对数值有效
+  // Number.isInteger()用来判断一个值是否为整数。在JavaScript内部，整数和浮点数是同样的储存方法，所以3和3.0被视为同一个值。
+  console.log(Number.isInteger(25.0)); //true
+  console.log(Number.isInteger(25.1)); //false
+}
+{
+  class Point{
+    constructor(x,y){
+      this.x=x;
+      this.y=y
+    }
+    toString(){
+      return '('+this.x+','+this.y+ ')'
+    }
+  }
+  var point = new Point(1,2)
+  console.log(point.toString());
+}
+{
+
+
+  let arr = [1,2,3,4]
+  let [c,d] = arr
+  console.log([c,d]);
+}
+  
+</script>
+</html>
