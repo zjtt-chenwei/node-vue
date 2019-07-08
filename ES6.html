@@ -245,6 +245,58 @@ new Vue({
   }
   console.log(add(2, 5, 3));
 }
+/* 对象的扩展 */
+{
+  //name 属性
+  var person = {
+    sayName() {
+      console.log(this.name);
+    }
+  };
+  console.log(person.sayName.name);   // "sayName"
+  // 属性名表达式
+  var foo = 'bar';
+  var baz = { [foo]: 'abc'}; //{bar: "abc"}
+  var baz2 = { foo: 'abc'};  //{foo: "abc"}
+  var baz3 = {}; baz3[foo] ='abc'; //{bar: "abc"}
+  console.log(baz, baz2, baz3);
+  // Object.is()
+  console.log((Object.is(NaN, NaN)));
+  //Object.assign() 用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）
+  var target = { a: 1 };
+  var source1 = { b: 2 };
+  var source2 = { c: 3 };
+
+  console.log(Object.assign(target, source1, source2)); //{a: 1, b: 2, c: 3}
+
+}
+/* symbol */
+{
+  let s = Symbol('abc');
+  console.log(s); //Symbol(abc)
+
+}
+/* set和map数据结构 */
+{
+  //set  它类似于数组，但是成员的值都是唯一的，没有重复的值
+  var s = new Set();
+  [2, 3, 5, 4, 5, 2, 2].map(x => s.add(x));
+  console.log(s); //Set(4) {2, 3, 5, 4}
+  // 去除数组的重复成员
+  let array = [1,2,1,5,3,4];
+  console.log([...new Set(array)]); 
+
+  function dedupe(array) {
+    return Array.from(new Set(array));
+  }
+  dedupe([1, 1, 2, 3]) // [1, 2, 3]
+
+  let set = new Set(['red', 'green', 'blue']);
+  console.log(set);
+  for (let x of set) {
+    console.log(x); //red green blue
+  }
+}
 {
   class Point{
     constructor(x,y){
@@ -259,8 +311,6 @@ new Vue({
   console.log(point.toString());
 }
 {
-
-
   let arr = [1,2,3,4]
   let [c,d] = arr
   console.log([c,d]);
